@@ -1,0 +1,27 @@
+
+<% if flash[:my_errors] %>
+    <% flash[:my_errors].each do |error| %>
+        <p><%= error %></p>
+    <% end %>
+<% end %>
+
+<%= form_for @recipe do |f| %>
+
+    <%= f.label :user, "Select a user" %><br>
+    <%= f.collection_select :user_id, User.all, :id, :name %><br><br>
+
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br><br>
+
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br><br>
+
+    <%= f.fields_for :ingredients, @recipe.ingredients.build do |ff| %>
+        <%= ff.label :name, "Add ingredient:" %><br>
+        <%= ff.text_field :name %><br><br>
+    <% end %>
+
+    <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name %><br><br>
+
+    <%= f.submit %>
+<% end %>

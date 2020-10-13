@@ -1,0 +1,19 @@
+
+<% if flash[:my_errors] %>
+    <% flash[:my_errors].each do |error| %>
+        <p><%= error %></p>
+    <% end %>
+<% end %>
+
+
+<%= form_for @user do |f| %>
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br><br>
+
+    <%= f.label :age %><br>
+    <%= f.number_field :age %><br><br>
+
+    <%= f.submit %>
+
+<% end %>

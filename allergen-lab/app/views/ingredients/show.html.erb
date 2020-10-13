@@ -1,0 +1,18 @@
+<h1><%= @ingredient.name %></h1>
+
+<p>Recipes with <%= @ingredient.name %>:</p>
+<% if @ingredient.recipes.present? %>
+    <% @ingredient.recipes.each do |recipe| %>
+        <ul>
+            <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+        </ul>
+    <% end %>
+    <p>Have an idea for a recipe with this ingredient? Click <%= link_to 'here', new_recipe_path %> to add</p>
+<% else %>
+    <p>None yet! Have an idea for a recipe with this ingredient? Click <%= link_to 'here', new_recipe_path %> to add</p>
+<% end %>
+
+<h3>To edit <%= link_to 'click here', edit_ingredient_path(@ingredient) %></h3>
+
+<%= button_to 'Delete Ingredient', ingredient_path(@ingredient), method: :delete %>
+

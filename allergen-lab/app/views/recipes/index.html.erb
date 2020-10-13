@@ -1,0 +1,11 @@
+<h1>All Recipes!</h1>
+
+<% @recipes.each do |recipe| %>
+<ul>
+    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+</ul>
+<% end %>
+
+<%= form_tag recipes_path, method: :get do %>
+    <%= submit_tag "Sort by number of ingredients", name: :sort %>
+<% end %>

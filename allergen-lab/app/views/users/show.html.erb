@@ -1,0 +1,20 @@
+<h1><%= @user.name %></h1>
+<p>Age: <%= @user.age %></p>
+
+
+<p>My Recipes: </p>
+    <% if @user.recipes.present? %>
+        <ul>
+            <% @user.recipes.each do |recipe| %>
+                <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+            <% end %>
+        </ul>
+        <p><%= link_to 'Add to your collection', new_recipe_path %></p>
+    <% else %>
+        <p>None yet! <%= link_to 'Click here', new_recipe_path %> to add your first recipe!</p>
+    <% end %>
+
+
+<h3>To edit account, <%= link_to 'click here', edit_user_path(@user) %></h3>
+
+<%= button_to "Delete Account", user_path(@user), method: :delete %>
